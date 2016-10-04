@@ -171,9 +171,9 @@
             "Value": "VPC"
           },
           {
-            "Key": "Owner",
+            "Key": "owner",
             "Value": {
-              "Ref": "Owner"
+              "Ref": "owner"
             }
           }
         ]
@@ -197,9 +197,9 @@
             "Value": "public-subnet"
           },
           {
-            "Key": "Owner",
+            "Key": "owner",
             "Value": {
-              "Ref": "Owner"
+              "Ref": "owner"
             }
           }
         ]
@@ -222,9 +222,9 @@
             "Value": "director-secgroup"
           },
           {
-            "Key": "Owner",
+            "Key": "owner",
             "Value": {
-              "Ref": "Owner"
+              "Ref": "owner"
             }
           }
         ],
@@ -279,9 +279,9 @@
             "Value": "director-2.1.0"
           },
           {
-            "Key": "Owner",
+            "Key": "owner",
             "Value": {
-              "Ref": "Owner"
+              "Ref": "owner"
             }
           }
         ],
@@ -345,9 +345,9 @@
             "Value": "internet-gateway"
           },
           {
-            "Key": "Owner",
+            "Key": "owner",
             "Value": {
-              "Ref": "Owner"
+              "Ref": "owner"
             }
           }
         ]
@@ -425,10 +425,10 @@
     }
   },
   "Parameters": {
-    "Owner": {
+    "owner": {
       "Description": "AWS Owner username",
       "Type": "String",
-      "Default": "aheib",
+      "Default": "",
       "ConstraintDescription": "must be a valid username."
     },
     "DirectorInstanceType": {
