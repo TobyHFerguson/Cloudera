@@ -288,8 +288,8 @@
         "InstanceType": {
           "Ref": "DirectorInstanceType"
         },
-        "ImageId": {
-          "Ref": "ImageType"
+        "ImageId" : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" },
+                          { "Fn::FindInMap" : [ "AWSInstanceType2Arch", { "Ref" : "DirectorInstanceType" }, "Arch" ] } ] 
         },
         "KeyName": {
           "Ref": "KeyName"
@@ -441,12 +441,6 @@
       ],
       "ConstraintDescription": "must be a valid EC2 instance type."
     },
-    "ImageType": {
-      "Description": "CentOS 7.0 AMI type",
-      "Type": "String",
-      "Default": "ami-7abd0209",
-      "ConstraintDescription": "must be a valid AMI image."
-    },
     "KeyName": {
       "Description": "Name of an EC2 KeyPair to enable SSH access to the instance.",
       "Type": "AWS::EC2::KeyPair::KeyName",
@@ -463,7 +457,18 @@
       "ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."
     }
   },
-  "Mappings": {},
+  "Mappings" : {
+      "AWSInstanceType2Arch" : {
+      "c3.large" :  { "Arch" : "HVM64" },
+      "c4.large" :  { "Arch" : "HVM64" }
+    },
+
+    "AWSRegionArch2AMI" : {
+      "us-east-1"      : { "HVM64" : "ami-6d1c2007" },
+      "us-west-1"      : { "HVM64" : "ami-af4333cf" },
+      "eu-west-1"      : { "HVM64" : "ami-7abd0209" },
+    }
+  },
   "Outputs": {
     "InstanceID": {
       "Description": "The Instance ID",
