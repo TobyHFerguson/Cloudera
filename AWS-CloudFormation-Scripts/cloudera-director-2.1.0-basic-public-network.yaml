@@ -463,7 +463,7 @@
       "ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."
     }
   },
-  "Mappings": {},
+    "Mappings": {},
   "Outputs": {
     "InstanceID": {
       "Description": "The Instance ID",
@@ -475,6 +475,59 @@
       "Description": "The VPC ID",
       "Value": {
         "Ref": "VPC"
+      }
+    },
+    "KeyName": {
+      "Description": "Key Name used to access instance via ssh",
+      "Value": {
+        "Ref": "KeyName"
+      }
+    },
+    "DirectorUrl": {
+      "Description": "Url of Director instance",
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "http://",
+            {
+              "Fn::GetAtt": [
+                "Director",
+                "PublicDnsName"
+              ]
+            },
+            ":7189"
+          ]
+        ]
+      }
+    },
+    "ssh": {
+      "Description": "ssh connection string",
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "ssh -i /path/to/keyfile/",
+            {
+              "Ref": "KeyName"
+            },
+            " ",
+            {
+              "Fn::Join": [
+                "@",
+                [
+                  "centos",
+                  {
+                    "Fn::GetAtt": [
+                      "Director",
+                      "PublicDnsName"
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        ]
       }
     }
   }
