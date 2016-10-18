@@ -429,8 +429,7 @@
       "Description": "AWS Owner username",
       "Type": "String",
       "Default": "",
-      "AllowedPattern": "\\S+",
-      "ConstraintDescription": "must be a non-null valid username. No spaces are allowed."
+      "ConstraintDescription": "must be a non-null valid username."
     },
     "DirectorInstanceType": {
       "Description": "Director EC2 instance type",
